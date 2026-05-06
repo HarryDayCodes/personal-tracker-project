@@ -182,9 +182,15 @@ class Vehicle:
         print("Vehicle is stopping")
 
 class Car(Vehicle): # Inheritence - note this!
-    def __init(self, brand, model, year, number_of_doors):
+    def __init__(self, brand, model, year, number_of_doors):
         super().__init__(brand, model, year)
         self.number_of_doors = number_of_doors
+
+    def start(self):  # Implementing it's own version of Vehicle's methods
+        print("Car is starting.")
+
+    def stop(self):
+        print("Car is stopping.")   
 
 class Bike(Vehicle):
     def __init__(self, brand, model, year):
@@ -200,20 +206,18 @@ class Motorcycle(Vehicle):
     def __init__(self, brand, model, year):
         super().__init__(brand, model, year)
 
-    def start_bike(self):  # Implementing it's own version of Vehicle's methods
+    def start(self):  # Implementing it's own version of Vehicle's methods
         print("Motorcycle is starting.")
 
-    def stop_bike(self):
+    def stop(self):
         print("Motorcycle is stopping.")
     
-vehicles = [
+vehicles: list[Vehicle] = [  # Vehicles = list of vehicle objects (This is known as type hinting)
     Car("Ford", "Focus", 2008, 5),
     Motorcycle("Honda", "Scoopy", 2018)
 ]
 
 # Loop through list of vehicles and inspect them
-for vehicle in vehicles:
-    if isinstance(vehicle, Car):
-        print(f"We know {vehicle.brand} is a Car object")
-    elif isinstance(vehicle, Motorcycle):
-        print(f"We know {vehicle.brand} is a Motorcycle object")
+for vehicle in vehicles: 
+    vehicle.start() # These should change depending on if vehicle is car or motorcycle
+    vehicle.stop()
